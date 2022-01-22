@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>辞書DBシステム</title>
+        <link rel="stylesheet" href="/static/css/style.css">
+    </head>
+    <body>
+    <div class="header">
+        <a class="logout" href="/logout">ログアウト</a>
+        <h1 class="title">辞書DBシステム</h1>
+    </div>
+    <div class="container">
+        <div class="main">
+            <h3 class="user">{{name}}さん</h3>
+            
+            <!-- 辞書-->
+            {% for onegai in all_onegai %}
+            <div>
+                <input type="radio" name="update" form="update" value={{onegai.id}}>
+                <input type="checkbox" name="delete" form="delete" value={{onegai.id}}>
+                {{onegai.tango}}：{{onegai.yomi}}
+            </div>
+            {% endfor %}
+    <!-- 以下を追加 -->
+    <form action="/add" method="post">
+        <input type="text" name="tango" placeholder="単語">
+        <input type="text" name="yomi" placeholder="読み">
+        <input type="submit" value="Add">
+    </form>
+    <!-- 追加終わり -->
+    <!-- 以下を変更 -->
+    <form action="/update" method="post" id="update">
+        <input type="text" name="title" placeholder="title">
+        <input type="text" name="body" placeholder="body">
+        <input type="submit" value="Update">
+    </form>
+    <form action="/delete" method="post" id="delete">
+        <input type="submit" value="Delete Selected All Onegai">
+    </form>
+
+    <!-- 変更終わり -->
+        </div>
+        <div class="sidebar">
+            あ
+        </div>
+    </div>
+    </body>
+</html>
